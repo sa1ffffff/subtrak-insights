@@ -1,109 +1,366 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..800&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* SubTrak X — Dark Fintech Design System */
+/* ============================================================
+   SubTrak X — Material 3 (Material You) Design System
+   Seeded from electric violet · Light + Dark tonal palettes
+   ============================================================ */
 @layer base {
   :root {
-    /* Surfaces */
-    --background: 240 10% 4%;
-    --foreground: 240 5% 96%;
+    /* M3 Tonal palette — Light scheme */
+    --background: 270 30% 98%;          /* surface */
+    --foreground: 270 12% 12%;          /* on-surface */
 
-    --card: 240 8% 7%;
-    --card-foreground: 240 5% 96%;
+    --surface: 270 30% 98%;
+    --surface-dim: 270 20% 92%;
+    --surface-bright: 270 40% 99%;
+    --surface-container-lowest: 0 0% 100%;
+    --surface-container-low: 270 25% 96%;
+    --surface-container: 270 22% 94%;
+    --surface-container-high: 270 20% 91%;
+    --surface-container-highest: 270 18% 88%;
 
-    --popover: 240 10% 6%;
-    --popover-foreground: 240 5% 96%;
+    --card: 270 25% 96%;
+    --card-foreground: 270 12% 12%;
+    --popover: 270 25% 96%;
+    --popover-foreground: 270 12% 12%;
 
-    /* Brand */
-    --primary: 258 90% 66%;
-    --primary-foreground: 240 10% 4%;
-    --primary-glow: 270 100% 75%;
+    /* Primary — violet */
+    --primary: 264 70% 48%;
+    --primary-foreground: 0 0% 100%;
+    --primary-container: 264 90% 92%;
+    --on-primary-container: 264 80% 18%;
+    --primary-glow: 270 90% 65%;
 
-    --accent: 190 95% 55%;
-    --accent-foreground: 240 10% 4%;
+    /* Secondary — muted violet */
+    --secondary: 270 18% 90%;
+    --secondary-foreground: 270 25% 22%;
+    --secondary-container: 270 30% 88%;
+    --on-secondary-container: 270 30% 18%;
 
-    --secondary: 240 6% 12%;
-    --secondary-foreground: 240 5% 90%;
+    /* Tertiary — teal accent for data viz */
+    --tertiary: 178 70% 38%;
+    --tertiary-foreground: 0 0% 100%;
+    --tertiary-container: 178 60% 88%;
+    --on-tertiary-container: 178 80% 14%;
 
-    --muted: 240 6% 11%;
-    --muted-foreground: 240 5% 55%;
+    --accent: 178 70% 38%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 75% 60%;
+    --muted: 270 15% 92%;
+    --muted-foreground: 270 8% 42%;
+
+    --destructive: 0 75% 48%;
     --destructive-foreground: 0 0% 100%;
+    --error-container: 0 90% 93%;
+    --on-error-container: 0 80% 22%;
 
-    --success: 152 76% 50%;
-    --success-foreground: 240 10% 4%;
+    --success: 152 65% 38%;
+    --success-foreground: 0 0% 100%;
+    --warning: 35 90% 50%;
+    --warning-foreground: 0 0% 100%;
 
-    --warning: 38 95% 60%;
-    --warning-foreground: 240 10% 4%;
+    --border: 270 12% 86%;
+    --outline: 270 8% 60%;
+    --outline-variant: 270 12% 84%;
+    --input: 270 12% 84%;
+    --ring: 264 70% 48%;
 
-    --border: 240 6% 14%;
-    --input: 240 6% 14%;
-    --ring: 258 90% 66%;
+    --radius: 1rem; /* M3 large = 16px */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.75rem;
+    --radius-full: 9999px;
 
-    --radius: 0.75rem;
+    /* M3 Elevation — surface tint overlays + soft shadows */
+    --elevation-1: 0 1px 2px 0 hsl(270 25% 10% / 0.06), 0 1px 3px 1px hsl(270 25% 10% / 0.04);
+    --elevation-2: 0 1px 2px 0 hsl(270 25% 10% / 0.08), 0 2px 6px 2px hsl(270 25% 10% / 0.06);
+    --elevation-3: 0 4px 8px 3px hsl(270 25% 10% / 0.08), 0 1px 3px 0 hsl(270 25% 10% / 0.10);
+    --elevation-4: 0 6px 10px 4px hsl(270 25% 10% / 0.08), 0 2px 3px 0 hsl(270 25% 10% / 0.10);
+    --elevation-5: 0 8px 12px 6px hsl(270 25% 10% / 0.10), 0 4px 4px 0 hsl(270 25% 10% / 0.12);
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(258 90% 66%), hsl(190 95% 55%));
-    --gradient-violet: linear-gradient(135deg, hsl(270 100% 70%), hsl(258 90% 60%));
-    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(258 90% 66% / 0.18), transparent 60%);
-    --gradient-card: linear-gradient(180deg, hsl(240 8% 8%), hsl(240 8% 6%));
+    /* State layer opacity (M3 spec) */
+    --state-hover: 0.08;
+    --state-focus: 0.12;
+    --state-pressed: 0.12;
+    --state-dragged: 0.16;
 
-    /* Shadows */
-    --shadow-glow: 0 0 40px hsl(258 90% 66% / 0.25);
-    --shadow-elegant: 0 20px 60px -20px hsl(0 0% 0% / 0.6);
-    --shadow-card: 0 1px 0 0 hsl(240 5% 100% / 0.04) inset, 0 8px 24px -12px hsl(0 0% 0% / 0.8);
-
-    --sidebar-background: 240 10% 5%;
-    --sidebar-foreground: 240 5% 70%;
-    --sidebar-primary: 258 90% 66%;
-    --sidebar-primary-foreground: 240 10% 4%;
-    --sidebar-accent: 240 6% 10%;
-    --sidebar-accent-foreground: 240 5% 96%;
-    --sidebar-border: 240 6% 12%;
-    --sidebar-ring: 258 90% 66%;
+    /* Sidebar (Navigation Rail surface tier 2) */
+    --sidebar-background: 270 22% 94%;
+    --sidebar-foreground: 270 12% 22%;
+    --sidebar-primary: 264 70% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 264 90% 92%;
+    --sidebar-accent-foreground: 264 80% 18%;
+    --sidebar-border: 270 12% 86%;
+    --sidebar-ring: 264 70% 48%;
   }
 
   .dark {
-    /* Same — app is dark by default */
+    /* M3 Tonal palette — Dark scheme (no pure black) */
+    --background: 270 14% 8%;
+    --foreground: 270 8% 92%;
+
+    --surface: 270 14% 8%;
+    --surface-dim: 270 14% 6%;
+    --surface-bright: 270 12% 18%;
+    --surface-container-lowest: 270 16% 5%;
+    --surface-container-low: 270 14% 10%;
+    --surface-container: 270 12% 12%;
+    --surface-container-high: 270 12% 15%;
+    --surface-container-highest: 270 10% 18%;
+
+    --card: 270 12% 12%;
+    --card-foreground: 270 8% 92%;
+    --popover: 270 12% 14%;
+    --popover-foreground: 270 8% 92%;
+
+    --primary: 264 90% 78%;
+    --primary-foreground: 264 80% 16%;
+    --primary-container: 264 60% 32%;
+    --on-primary-container: 264 90% 92%;
+    --primary-glow: 270 100% 80%;
+
+    --secondary: 270 12% 22%;
+    --secondary-foreground: 270 20% 86%;
+    --secondary-container: 270 18% 26%;
+    --on-secondary-container: 270 30% 88%;
+
+    --tertiary: 178 70% 70%;
+    --tertiary-foreground: 178 80% 14%;
+    --tertiary-container: 178 50% 28%;
+    --on-tertiary-container: 178 60% 88%;
+
+    --accent: 178 70% 70%;
+    --accent-foreground: 178 80% 14%;
+
+    --muted: 270 10% 16%;
+    --muted-foreground: 270 8% 65%;
+
+    --destructive: 0 80% 72%;
+    --destructive-foreground: 0 80% 14%;
+    --error-container: 0 60% 30%;
+    --on-error-container: 0 90% 92%;
+
+    --success: 152 60% 65%;
+    --success-foreground: 152 80% 12%;
+    --warning: 35 90% 70%;
+    --warning-foreground: 35 80% 14%;
+
+    --border: 270 8% 22%;
+    --outline: 270 6% 50%;
+    --outline-variant: 270 8% 28%;
+    --input: 270 8% 22%;
+    --ring: 264 90% 78%;
+
+    --elevation-1: 0 1px 2px 0 hsl(0 0% 0% / 0.30), 0 1px 3px 1px hsl(0 0% 0% / 0.18);
+    --elevation-2: 0 1px 2px 0 hsl(0 0% 0% / 0.35), 0 2px 6px 2px hsl(0 0% 0% / 0.20);
+    --elevation-3: 0 4px 8px 3px hsl(0 0% 0% / 0.35), 0 1px 3px 0 hsl(0 0% 0% / 0.40);
+    --elevation-4: 0 6px 10px 4px hsl(0 0% 0% / 0.40), 0 2px 3px 0 hsl(0 0% 0% / 0.45);
+    --elevation-5: 0 8px 12px 6px hsl(0 0% 0% / 0.45), 0 4px 4px 0 hsl(0 0% 0% / 0.50);
+
+    --sidebar-background: 270 14% 10%;
+    --sidebar-foreground: 270 8% 78%;
+    --sidebar-primary: 264 90% 78%;
+    --sidebar-primary-foreground: 264 80% 16%;
+    --sidebar-accent: 264 60% 32%;
+    --sidebar-accent-foreground: 264 90% 92%;
+    --sidebar-border: 270 8% 20%;
+    --sidebar-ring: 264 90% 78%;
   }
 }
 
 @layer base {
   * { @apply border-border; }
-  html { color-scheme: dark; }
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -20%, hsl(258 90% 66% / 0.10), transparent),
-      radial-gradient(ellipse 60% 40% at 100% 100%, hsl(190 95% 55% / 0.06), transparent);
-    background-attachment: fixed;
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
-  h1, h2, h3, h4 { font-family: 'Space Grotesk', 'Inter', sans-serif; letter-spacing: -0.02em; }
-  .font-mono, .tabular { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+  /* M3 type scale uses Roboto Flex for display/headline */
+  h1, h2, h3, h4, h5, h6,
+  .display-large, .display-medium, .display-small,
+  .headline-large, .headline-medium, .headline-small {
+    font-family: 'Roboto Flex', 'Roboto', system-ui, sans-serif;
+    font-variation-settings: 'opsz' 32, 'wdth' 100;
+    letter-spacing: -0.01em;
+  }
+  .font-mono, .tabular {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Selection */
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
+    color: hsl(var(--foreground));
+  }
+
+  /* Focus visible — M3 outline */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--outline-variant));
+    border-radius: 8px;
+    border: 2px solid hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(var(--outline)); }
 }
 
 @layer components {
-  .glass-card {
-    @apply rounded-xl border border-border/60 bg-card/60 backdrop-blur-xl;
-    box-shadow: var(--shadow-card);
+  /* ===== M3 Type Scale ===== */
+  .display-large   { font-size: 3.5625rem; line-height: 4rem;     font-weight: 400; letter-spacing: -0.015em; }
+  .display-medium  { font-size: 2.8125rem; line-height: 3.25rem;  font-weight: 400; }
+  .display-small   { font-size: 2.25rem;   line-height: 2.75rem;  font-weight: 400; }
+  .headline-large  { font-size: 2rem;      line-height: 2.5rem;   font-weight: 500; }
+  .headline-medium { font-size: 1.75rem;   line-height: 2.25rem;  font-weight: 500; }
+  .headline-small  { font-size: 1.5rem;    line-height: 2rem;     font-weight: 500; }
+  .title-large     { font-size: 1.375rem;  line-height: 1.75rem;  font-weight: 500; letter-spacing: 0; }
+  .title-medium    { font-size: 1rem;      line-height: 1.5rem;   font-weight: 500; letter-spacing: 0.009em; }
+  .title-small     { font-size: 0.875rem;  line-height: 1.25rem;  font-weight: 500; letter-spacing: 0.007em; }
+  .body-large      { font-size: 1rem;      line-height: 1.5rem;   font-weight: 400; letter-spacing: 0.031em; }
+  .body-medium     { font-size: 0.875rem;  line-height: 1.25rem;  font-weight: 400; letter-spacing: 0.018em; }
+  .body-small      { font-size: 0.75rem;   line-height: 1rem;     font-weight: 400; letter-spacing: 0.033em; }
+  .label-large     { font-size: 0.875rem;  line-height: 1.25rem;  font-weight: 500; letter-spacing: 0.007em; }
+  .label-medium    { font-size: 0.75rem;   line-height: 1rem;     font-weight: 500; letter-spacing: 0.042em; }
+  .label-small     { font-size: 0.6875rem; line-height: 1rem;     font-weight: 500; letter-spacing: 0.045em; }
+
+  /* ===== M3 Surface tiers ===== */
+  .surface          { background: hsl(var(--surface)); }
+  .surface-low      { background: hsl(var(--surface-container-low)); }
+  .surface-default  { background: hsl(var(--surface-container)); }
+  .surface-high     { background: hsl(var(--surface-container-high)); }
+  .surface-highest  { background: hsl(var(--surface-container-highest)); }
+
+  /* ===== M3 Card variants ===== */
+  .m3-card-elevated {
+    background: hsl(var(--surface-container-low));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--elevation-1);
+    transition: box-shadow 200ms cubic-bezier(0.2, 0, 0, 1), background-color 200ms;
   }
+  .m3-card-elevated:hover { box-shadow: var(--elevation-2); }
+
+  .m3-card-filled {
+    background: hsl(var(--surface-container-highest));
+    border-radius: var(--radius-lg);
+  }
+
+  .m3-card-outlined {
+    background: hsl(var(--surface));
+    border: 1px solid hsl(var(--outline-variant));
+    border-radius: var(--radius-lg);
+  }
+
+  /* ===== State layers (M3) ===== */
+  .state-layer { position: relative; isolation: isolate; }
+  .state-layer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: currentColor;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 150ms cubic-bezier(0.2, 0, 0, 1);
+  }
+  .state-layer:hover::after  { opacity: var(--state-hover); }
+  .state-layer:focus-visible::after { opacity: var(--state-focus); }
+  .state-layer:active::after { opacity: var(--state-pressed); }
+
+  /* ===== Ripple ===== */
+  .ripple { position: relative; overflow: hidden; }
+  .ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: width 450ms cubic-bezier(0.2, 0, 0, 1), height 450ms cubic-bezier(0.2, 0, 0, 1), opacity 600ms;
+    pointer-events: none;
+  }
+  .ripple:active::before {
+    width: 300%;
+    height: 300%;
+    opacity: 0.12;
+    transition: 0s;
+  }
+
+  /* ===== KPI ===== */
+  .kpi-value {
+    font-family: 'Roboto Flex', 'Roboto', sans-serif;
+    font-variation-settings: 'opsz' 36, 'wdth' 100;
+    font-size: 2rem;
+    line-height: 2.25rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ===== Mesh background — very subtle ===== */
+  .mesh-bg {
+    background-image:
+      radial-gradient(ellipse 60% 40% at 15% 0%, hsl(var(--primary) / 0.10), transparent 60%),
+      radial-gradient(ellipse 50% 35% at 100% 100%, hsl(var(--tertiary) / 0.08), transparent 60%);
+    background-attachment: fixed;
+  }
+
   .gradient-text {
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--tertiary)));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
-  .grid-bg {
-    background-image:
-      linear-gradient(hsl(var(--border) / 0.4) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--border) / 0.4) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent);
+
+  /* M3 nav rail item — pill-shaped active state */
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: hsl(var(--sidebar-foreground));
+    transition: background-color 200ms cubic-bezier(0.2, 0, 0, 1), color 200ms;
+    position: relative;
+    isolation: isolate;
   }
-  .kpi-value { @apply font-mono text-3xl font-semibold tracking-tight; }
+  .nav-item:hover {
+    background: hsl(var(--sidebar-accent) / 0.5);
+    color: hsl(var(--sidebar-accent-foreground));
+  }
+  .nav-item-active {
+    background: hsl(var(--sidebar-accent));
+    color: hsl(var(--sidebar-accent-foreground));
+  }
+  .nav-item-active:hover {
+    background: hsl(var(--sidebar-accent));
+  }
+}
+
+@layer utilities {
+  .shadow-e1 { box-shadow: var(--elevation-1); }
+  .shadow-e2 { box-shadow: var(--elevation-2); }
+  .shadow-e3 { box-shadow: var(--elevation-3); }
+  .shadow-e4 { box-shadow: var(--elevation-4); }
+  .shadow-e5 { box-shadow: var(--elevation-5); }
 }
