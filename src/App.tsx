@@ -13,6 +13,7 @@ import Subscriptions from "./pages/app/Subscriptions";
 import Analytics from "./pages/app/Analytics";
 import Budget from "./pages/app/Budget";
 import Alerts from "./pages/app/Alerts";
+import Calendar from "./pages/app/Calendar";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/app" element={<AppLayout />}>
               <Route index element={<Dashboard />} />
               <Route path="subscriptions" element={<Subscriptions />} />
+              <Route path="calendar" element={<Calendar />} />
               <Route path="analytics" element={<Analytics />} />
               <Route path="budget" element={<Budget />} />
               <Route path="alerts" element={<Alerts />} />
