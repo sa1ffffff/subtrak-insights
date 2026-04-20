@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
-import { LayoutDashboard, CreditCard, BarChart3, Bell, Wallet, LogOut } from "lucide-react";
+import { LayoutDashboard, CreditCard, BarChart3, Bell, Wallet, LogOut, CalendarDays } from "lucide-react";
 import logo from "@/assets/subtrak-logo.png";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
@@ -8,6 +8,7 @@ import { useEffect } from "react";
 const nav = [
   { to: "/app", end: true, label: "Dashboard", icon: LayoutDashboard },
   { to: "/app/subscriptions", label: "Subscriptions", icon: CreditCard },
+  { to: "/app/calendar", label: "Calendar", icon: CalendarDays },
   { to: "/app/analytics", label: "Analytics", icon: BarChart3 },
   { to: "/app/budget", label: "Budget", icon: Wallet },
   { to: "/app/alerts", label: "Alerts", icon: Bell },

@@ -628,6 +628,7 @@ export type Database = {
           subscription_id: string
         }[]
       }
+      generate_renewal_alerts: { Args: never; Returns: number }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
