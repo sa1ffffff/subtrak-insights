@@ -59,7 +59,24 @@ export default function Dashboard() {
       <PageHeader
         title="Overview"
         subtitle="Your subscription intelligence at a glance."
-        actions={<Button asChild className="bg-gradient-primary text-primary-foreground"><Link to="/app/subscriptions">+ Add subscription</Link></Button>}
+        actions={
+          <div className="flex gap-2">
+            {(overview?.active_subs ?? 0) === 0 && (
+              <Button
+                variant="outline"
+                onClick={async () => {
+                  if (!user) return;
+                  try {
+                    const n = await seedDemoData(user.id);
+                    toast.success(`Seeded ${n} demo subscriptions`);
+                    location.reload();
+                  } catch (e: any) { toast.error(e.message); }
+                }}
+              >Load demo data</Button>
+            )}
+            <Button asChild className="bg-gradient-primary text-primary-foreground"><Link to="/app/subscriptions">+ Add subscription</Link></Button>
+          </div>
+        }
       />
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
