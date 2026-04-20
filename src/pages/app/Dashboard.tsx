@@ -3,10 +3,12 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { PageShell, PageHeader, KpiCard } from "@/components/PageShell";
 import { fmtMoney } from "@/lib/format";
-import { Activity, CreditCard, TrendingUp, Wallet, AlertTriangle, Sparkles } from "lucide-react";
+import { Activity, CreditCard, Wallet, Sparkles } from "lucide-react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis, PieChart, Pie, Cell } from "recharts";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { seedDemoData } from "@/lib/seedDemo";
+import { toast } from "sonner";
 
 type Overview = {
   monthly_income: number | null;
