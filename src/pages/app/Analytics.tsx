@@ -30,7 +30,7 @@ export default function Analytics() {
 
   return (
     <PageShell>
-      <PageHeader title="Analytics" subtitle="SQL-powered insights using CTEs, window functions & aggregations." />
+      <PageHeader title="Analytics" subtitle="See where your money goes, spot wasted subscriptions, and track your spending trends." />
 
       <div className="grid lg:grid-cols-2 gap-4 mb-4">
         <div className="glass-card p-6">
