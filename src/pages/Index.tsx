@@ -39,8 +39,7 @@ export default function Index() {
           <span className="gradient-text">forgotten subscriptions.</span>
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
-          A fintech intelligence engine where PostgreSQL runs the analytics — predictions, waste detection,
-          health scoring — and React just shows you the truth.
+          A smart subscription tracker that finds wasted spending, predicts your next bill, and keeps your budget healthy. All your recurring payments in one clear view.
         </p>
         <div className="flex items-center justify-center gap-3">
           <Button asChild size="lg" className="bg-gradient-primary text-primary-foreground hover:opacity-90 shadow-glow">
