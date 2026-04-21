@@ -63,15 +63,6 @@ export default function Auth() {
             {mode === "signin" ? "Sign in to your dashboard." : "Start optimizing your subscriptions today."}
           </p>
 
-          <Button type="button" variant="outline" className="w-full mb-4" onClick={google} disabled={loading}>
-            <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24"><path fill="currentColor" d="M21.35 11.1H12v3.2h5.35c-.23 1.4-1.6 4.1-5.35 4.1-3.22 0-5.85-2.66-5.85-5.95s2.63-5.95 5.85-5.95c1.83 0 3.06.78 3.76 1.45l2.56-2.47C16.74 3.94 14.6 3 12 3 6.98 3 3 6.98 3 12s3.98 9 9 9c5.2 0 8.65-3.65 8.65-8.8 0-.6-.07-1.05-.15-1.5z"/></svg>
-            Continue with Google
-          </Button>
-
-          <div className="flex items-center gap-3 my-4 text-xs text-muted-foreground">
-            <div className="h-px flex-1 bg-border" /> OR <div className="h-px flex-1 bg-border" />
-          </div>
-
           <form onSubmit={submit} className="space-y-3">
             <div>
               <Label htmlFor="email">Email</Label>
