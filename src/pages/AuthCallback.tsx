@@ -8,6 +8,23 @@ const getErrorMessage = (error: unknown) => {
   return error instanceof Error ? error.message : "Authentication failed";
 };
 
+const waitForSession = async (attempts: number, intervalMs: number) => {
+  for (let i = 0; i < attempts; i += 1) {
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
+    if (error) throw error;
+    if (session) return session;
+
+    if (i < attempts - 1) {
+      await new Promise((resolve) => setTimeout(resolve, intervalMs));
+    }
+  }
+
+  return null;
+};
+
 export default function AuthCallback() {
   const navigate = useNavigate();
 
@@ -27,16 +44,20 @@ export default function AuthCallback() {
       }
 
       try {
+        // Supabase browser client typically auto-exchanges code from URL.
+        const sessionFromAutoExchange = await waitForSession(15, 200);
+        if (sessionFromAutoExchange) {
+          navigate("/app", { replace: true });
+          return;
+        }
+
+        // Fallback for cases where auto-exchange did not complete.
         if (authCode) {
           const { error } = await supabase.auth.exchangeCodeForSession(authCode);
           if (error) throw error;
         }
 
-        const {
-          data: { session },
-          error,
-        } = await supabase.auth.getSession();
-        if (error) throw error;
+        const session = await waitForSession(10, 200);
         if (!session) throw new Error("Authentication session not found. Please try again.");
 
         navigate("/app", { replace: true });
