@@ -40,14 +40,14 @@ export default function AppLayout() {
               to={item.to}
               end={item.end}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition ${
+                `group flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-200 hover:translate-x-1 hover:shadow-md ${
                   isActive
-                    ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                    ? "bg-sidebar-accent text-sidebar-accent-foreground shadow-sm"
                     : "text-sidebar-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
                 }`
               }
             >
-              <item.icon className="w-4 h-4" />
+              <item.icon className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
               {item.label}
             </NavLink>
           ))}
